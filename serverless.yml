@@ -1,0 +1,26 @@
+service:
+  name: puppeteer-lambda-typescript-example
+#app: your-app-name
+#tenant: your-tenant-name
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs8.10 # 変更
+
+functions:
+  hello:
+    handler: handler.hello
+    memorySize: 1024 # 追記
+    timeout: 30 # 追記
+    events:
+      - http:
+          method: get
+          path: hello
+
+# 以下追加
+custom:
+  webpackIncludeModules: true
